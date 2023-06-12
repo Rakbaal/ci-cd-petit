@@ -7,7 +7,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: save private key
-              uses: webfactory/ssh-agent@v.0.8.0
+              uses: webfactory/ssh-agent@v0.8.0
               with:
                 ssh-private-key: ${{secrets.SSH_KEY}}
             - name: ssh connection

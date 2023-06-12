@@ -11,5 +11,5 @@ jobs:
               with:
                 ssh-private-key: ${{secrets.SSH_KEY}}
             - name: ssh connection
-              run: ssh -o StrictHostKeyChecking=no ${{secrets.SSH_USER}}@${{secrets.DNS_ADDRESS}} "cd app && nvm use stable && git pull origin main && npm i && npm run build && pm2 restart all"
+              run: ssh -o StrictHostKeyChecking=no ${{secrets.SSH_USER}}@${{secrets.DNS_ADDRESS}} "cd app && nvm use stable && git pull origin main && npm i && npm run build && pm2 restart all" 
 

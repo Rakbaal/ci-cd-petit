@@ -1,0 +1,15 @@
+name: deploy
+run-name: ${{github.actor}} is deploying
+on: [push]
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: save private key
+              uses: webfactory/ssh-agent@v.0.8.0
+              with:
+                ssh-private-key: ${{secrets.SSH_KEY}}
+            - name: ssh connection
+              run: ssh -o StrictHostKeyChecking=no ${{secrets.SSH_USER}}@${{secrets.DNS_ADDRESS}} "cd app && git pull origin main && npm i && npm run build && pm2 start npm -- run start"
+

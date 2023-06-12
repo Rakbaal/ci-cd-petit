@@ -1,0 +1,20 @@
+name: test
+run-name: ${{ github.actor }} is running cypress tests
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps : 
+        - name: retrieves cached build
+          uses: actions/cache@v3
+          with:
+            key: next.build
+        - name: running cypress tests
+          run: npm run e2e:headless
+        - name: saving video as artifact
+          if: ${{always()}}
+          uses: actions/upload-artifact@v3
+          with:
+            name: video
+            path: cypress/videos/app.cy.ts.mp4

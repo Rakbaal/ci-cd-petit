@@ -14,11 +14,8 @@ jobs:
           npm i
       - name: building
         run: npm run build
-      - name: running cypress tests
-        run: npm run e2e:headless
-      - name: saving video as artifact
-        if: ${{always()}}
-        uses: actions/upload-artifact@v3
+      - name: caching
+        uses: actions/cache@v3
         with:
-          name: video
-          path: cypress/videos/app.cy.ts.mp4
+            path: .next
+            key: next.build

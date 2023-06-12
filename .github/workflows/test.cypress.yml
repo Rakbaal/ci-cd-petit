@@ -10,11 +10,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps : 
+        - name: checkout
+          uses: actions/checkout@v3
         - name: retrieves cached build
           uses: actions/cache@v3
           with:
-            path: .next
-            key: next.build
+            path: node_modules
+            key: dependencies
         - name: running cypress tests
           run: npm run e2e:headless
         - name: saving video as artifact

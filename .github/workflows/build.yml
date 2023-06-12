@@ -17,6 +17,7 @@ jobs:
       - name: running cypress tests
         run: npm run e2e:headless
       - name: saving video as artifact
+        if: ${{always()}}
         uses: actions/upload-artifact@v3
         with:
           name: video

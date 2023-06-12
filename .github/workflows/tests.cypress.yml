@@ -1,14 +1,29 @@
-name: test
-run-name: ${{ github.actor }} is running cypress tests
-on: 
-    workflow_run:
-        workflows: ["build"]
-        types:
-            - completed
+name: build
+run-name: ${{ github.actor }} is building
+on: [push]
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout 
+        uses: actions/checkout@v3
+      - name: setup
+        run: |
+          npm install next@latest react@latest react-dom@latest 
+          npm i
+      - name: building
+        run: npm run build
+      - name: caching
+        uses: actions/cache@v3
+        with:
+            path: |
+              node_modules
+              /home/runner/.cache/Cypress
+            key: dependencies
   test:
     runs-on: ubuntu-latest
+    needs: build
     steps : 
         - name: checkout
           uses: actions/checkout@v3

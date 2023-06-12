@@ -1,5 +1,5 @@
 name: build
-run-name: ${{ github.actor }} is building and running it's app
+run-name: ${{ github.actor }} is trying to build
 on: [push]
 
 jobs:
@@ -7,7 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
       - run: npm install next@latest react@latest react-dom@latest
       - run: npm i
       - run: npm run build

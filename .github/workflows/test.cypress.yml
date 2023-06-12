@@ -9,6 +9,7 @@ jobs:
         - name: retrieves cached build
           uses: actions/cache@v3
           with:
+            path: .next
             key: next.build
         - name: running cypress tests
           run: npm run e2e:headless

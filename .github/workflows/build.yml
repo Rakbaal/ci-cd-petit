@@ -1,5 +1,5 @@
 name: build
-run-name: ${{ github.actor }} is trying to build
+run-name: ${{ github.actor }} is building and testing
 on: [push]
 
 jobs:
@@ -10,4 +10,4 @@ jobs:
       - run: npm install next@latest react@latest react-dom@latest
       - run: npm i
       - run: npm run build
-      - run: npm run start
+      - run: npm run e2e:headless

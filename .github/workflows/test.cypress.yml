@@ -1,6 +1,10 @@
 name: test
 run-name: ${{ github.actor }} is running cypress tests
-on: [push]
+on: 
+    workflow_run:
+        workflows: ["build"]
+        types:
+            - completed
 
 jobs:
   test:

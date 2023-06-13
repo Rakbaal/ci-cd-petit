@@ -13,3 +13,4 @@ jobs:
             - name: ssh connection
               run: ssh -o StrictHostKeyChecking=no ${{secrets.SSH_USER}}@${{secrets.DNS_ADDRESS}} "cd app && git pull origin main && npm i && npm run build && pm2 restart all" 
 
+ 

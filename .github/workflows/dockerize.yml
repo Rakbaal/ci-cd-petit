@@ -1,0 +1,24 @@
+name: dockerize
+run-name: ${{github.actor}} is building the container
+on: [push]
+
+jobs:
+    pull:
+        runs-on: ubuntu-latest
+        steps:
+            - name: login to docker registry
+              uses: docker/login-action@v3
+              with:
+                registry: ghcr.io
+                username: ${{github.actor}}
+                password: ${{secrets.GITHUB_TOKEN}}
+            - name: delete previous images
+              run: sudo docker system prune
+            - name: pull newest image
+              run: sudo docker pull ghcr.io/rakbal/cicd
+    run:
+        runs-on: ubuntu-latest
+        steps:
+            - name: run container
+              run: sudo docker run ghcr.io/rakbal/cicd
+              

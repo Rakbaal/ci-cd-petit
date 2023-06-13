@@ -21,15 +21,15 @@ jobs:
               with:
                 push: true
                 tags: ghcr.io/rakbaal/cicd:latest 
-    # deploy-image:
-    #     runs-on: ubuntu-latest
-    #     steps:
-    #         - name: save private key
-    #           uses: webfactory/ssh-agent@v0.8.0
-    #           with:
-    #             ssh-private-key: ${{secrets.SSH_KEY}}
-    #         - name: ssh connection
-    #           run: ssh -o StrictHostKeyChecking=no ${{secrets.SSH_USER}}@${{secrets.DNS_ADDRESS}} "sudo docker system prune && sudo docker login ghcr.io -u Rakbaal " 
+    deploy-image:
+        runs-on: ubuntu-latest
+        steps:
+            - name: save private key
+              uses: webfactory/ssh-agent@v0.8.0
+              with:
+                ssh-private-key: ${{secrets.SSH_KEY}}
+            - name: ssh connection
+              run: ssh -o StrictHostKeyChecking=no ${{secrets.SSH_USER}}@${{secrets.DNS_ADDRESS}} "sudo docker system prune && sudo docker login ghcr.io -u Rakbaal " 
 
               
               

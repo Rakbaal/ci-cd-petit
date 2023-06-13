@@ -1,5 +1,7 @@
 FROM debian
 
+LABEL org.opencontainers.image.source https://github.com/Rakbaal/ci-cd-petit
+
 COPY . /app
 RUN apt update \ 
 && apt install nodejs -yq \ 

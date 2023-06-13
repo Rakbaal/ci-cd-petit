@@ -3,7 +3,7 @@ run-name: ${{github.actor}} is building the container
 on: [push]
 
 jobs:
-    pull:
+    build-push:
         runs-on: ubuntu-latest
         steps:
             - name: login to docker registry
@@ -13,14 +13,20 @@ jobs:
                 username: ${{github.actor}}
                 password: ${{secrets.GITHUB_TOKEN}}
                 logout: false
-            - name: delete previous images
-              run: sudo docker system prune
-            - name: pull newest image
-              run: sudo docker pull ghcr.io/rakbal/cicd
-    run:
-        runs-on: ubuntu-latest
-        needs: pull
-        steps:
-            - name: run container
-              run: sudo docker run ghcr.io/rakbal/cicd
+            - name: Build and push
+              uses: docker/build-push-action@v4
+              with:
+                push: true
+                tags: ghcr.io/rakbaal/cicd:latest
+    # deploy-image:
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #         - name: save private key
+    #           uses: webfactory/ssh-agent@v0.8.0
+    #           with:
+    #             ssh-private-key: ${{secrets.SSH_KEY}}
+    #         - name: ssh connection
+    #           run: ssh -o StrictHostKeyChecking=no ${{secrets.SSH_USER}}@${{secrets.DNS_ADDRESS}} "sudo docker system prune && sudo docker login ghcr.io -u Rakbaal " 
+
+              
               

@@ -30,6 +30,6 @@ jobs:
               with:
                 ssh-private-key: ${{secrets.SSH_KEY}}
             - name: ssh connection
-              run: ssh -o StrictHostKeyChecking=no ${{secrets.SSH_USER}}@${{secrets.DNS_ADDRESS}} "sudo docker system prune -f && sudo docker pull ghcr.io/rakbaal/cicd && sudo docker-compose up -d"  
+              run: ssh -o StrictHostKeyChecking=no ${{secrets.SSH_USER}}@${{secrets.DNS_ADDRESS}} "sudo docker-compose down && sudo docker system prune -f && sudo docker pull ghcr.io/rakbaal/cicd && sudo docker-compose up -d"  
 
             

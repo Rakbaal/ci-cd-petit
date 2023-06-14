@@ -14,7 +14,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Production
+          ALLO
         </h1>
 
         <p className={styles.description}>

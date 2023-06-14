@@ -1,0 +1,23 @@
+services:
+  web:
+    build: .
+    ports:
+    - 3000:3000
+    volumes:
+    - ./:/app
+    command: npm run dev
+  
+  db:
+    image: mariadb:10.6
+    environment:
+      MARIADB_RANDOM_ROOT_PASSWORD: "yes"
+      MARIADB_DATABASE: cube
+      MARIADB_USER: cube
+      MARIADB_PASSWORD: Noot-Noot
+    volumes:
+      - ./docker/db/data:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080

@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <div>
-      <h1>OUAIIIIS SAM T'ES TROP BONNE WALLAH</h1>
+      <h1>Yahaaa</h1>
     </div>
   )
 }
